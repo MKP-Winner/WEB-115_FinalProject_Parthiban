@@ -6,16 +6,25 @@ Student: Mithunkarthick Parthiban | Repo: WEB-115_FinalProject_Parthiban
 
 ## Overview
 
-This app is a Productivity Tracker that tracks your tasks and progress on them, judges your personality, and also shows random quotes but interprets them in a funny or sarcastic way.
+The Sarcastic Productivity Tracker is a web-based application that allows users to manange daily tasks while receiving unique quotes.
+
+The project combines productivity tracking with personality by delivering either motivational or sarcastic/humorous quotes depending on the selected mode. This creates a more engaging and interactive experience compared to traditional productivity tools.
+
+The application integrates external APIs to fetch real-time data and dynamically updates the interface based on user interaction.
 
 ---
 
 ## Features
 
-- User adds tasks (homework, studying, etc.)
-- Marks them as complete
-- App calculates productivity score
-- Gets a quote from the APIs and shows the quote and a funny interpretation of it (ex: If user doesn't complete anything then Quote: “The secret of getting ahead is getting started.” App says: “Interesting. You did neither.”)
+## Task Management
+- Add tasks dynamically
+- Mark tasks as complete
+- Track overall productivity progress
+
+## Quote System
+- Motivation Mode: Uses API Ninjas for structured quotes
+- Sarcasm Mode (Kanye Mode): Uses Kanye REST API for humorous quotes
+- Random Mode: Randomly selects between both APIS
 
 ---
 
@@ -23,30 +32,26 @@ This app is a Productivity Tracker that tracks your tasks and progress on them, 
 
 | Requirement | Implementation |
 |---|---|
-| **If Statements & Loops** |  |
-| **Event Listeners** |  |
-| **DOM Element Creation** |  |
-| **Classes & Subclasses** |  |
+| **If Statements & Loops** | If Statements are used to switch between quote modes and Loops iterate through task lists to update and render tasks dynamically. |
+| **Event Listeners** | Button click events for adding tasks, Checkbox events for marking tasks complete, & Mode selection buttons to switch between APIs|
+| **DOM Element Creation** | Tasks are dynamically created and added to the DOM, Quotes are inserted and updated without reloading the page, & UI updates reflect user interactions in real time |
+| **Classes & Subclasses** | A main class handles API calls, Separate methods manage each API request, & The structure supports scalability for adding new features |
 
 ---
 
 ## DLC — Additional Topics
 
 ### JSON & Local Storage
-The full tournament object — contestant names, match results, current round — is serialized with `JSON.stringify()` and saved to `localStorage` after every state change. On load, `JSON.parse()` restores the bracket exactly where the user left off. This means no data is lost between sessions without any backend.
+JSON is usec to parseand structure data from API responses, while local storsge stores the user's tasks in the browser so they csn persist across sessions and can be reloaded when the app is reopened.
 
 ### Fetch & Public APIs
-When a user starts a tournament in "Music Mode," the app fetches the top tracks for a given artist from the MusicBrainz API and pre-fills the contestant list automatically, so users can immediately bracket an artist's discography without typing anything in.
-
-### HTML Canvas
-The bracket is rendered visually on an HTML `<canvas>` element. Contestants are drawn as labeled boxes, connecting lines show the bracket structure, and completed matches are styled differently from pending ones. Canvas re-renders after every winner selection to reflect the updated state.
+The website uses the API Ninjas Quotes API to fetch structured motivational quotes and the Kanye.rest API to generate sarcastic or humorous quotes, allowing the application to dynamically display different types of content based on the selected mode.
 
 ---
 
 ## Tech Stack
 
 - HTML, CSS, Vanilla JavaScript
-- MusicBrainz API *(free, no API key required)*
-- `localStorage` for tournament persistence
-- HTML Canvas for bracket rendering
+- Kanye.rest API *(free, no API key required)*
+- Quotes Ninjas API *(free, but API key required)*
 - VS Code + GitHub
