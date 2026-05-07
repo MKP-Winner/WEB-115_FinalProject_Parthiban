@@ -4,38 +4,44 @@ class ContentManager {
     async getMotivationalQuote() {
         try {
             const res = await fetch("https://api.api-ninjas.com/v2/randomquotes", {
-                headers: {"X-Api-Key": Qvn8YOUTh16P80TirBag5NHp6k3XwtKyDm4VN4Mm}
+                headers: {"X-Api-Key": API_KEY}
             });
 
-            console.log("Status:", res.status);
-
-            const data = await res.json();
-            console.log("Data:", data);
+            if (!res.ok) throw new Error(`API.error: ${res.status}`);
             
+            const data = await res.json();
             return data[0].quote;
-        } catch {
+        } catch (err) {
+            console.error("Motivational quote error:", err);
             return "Motivation failed! Work harder or give up!";
         }
     }
 
     async getKanyeQuote() {
         try {
-            const res =await fetch("https://api.kanye.rest/");
+            const res = await fetch("https://api.kanye.rest", {
+                method: "GET",
+                headers: {"Content-Type": "application/json"}
+            });
+
+            if (!res.ok) throw new Error(`API error: ${res.status}`);
+
             const data = await res.json();
             return data.quote;
-        } catch {
+        } catch (err) {
+            console.error("Kanye quote error:", err);
             return "Kanye has no advice for you right now";
         }
     }
 
     async getQuote(mode) {
         if (mode === "motivation") {
-            return await this.getNinjasQuote();
+            return await this.getMotivationalQuote();
         } else if (mode === "sarcasm") {
             return await this.getKanyeQuote();
         } else {
             return Math.random() < 0.5
-            ? await this.getNinjaQuote()
+            ? await this.getMotivationalQuote()
             : await this.getKanyeQuote();
         }
     }
@@ -57,7 +63,7 @@ function loadTasks() {
 }
 
 function addTask() {
-    const input = document.getElementById("task-input");
+    const input = document.getElementById("taskInput");
     const text = input.value.trim();
     
     if (text === "") return;
@@ -102,23 +108,20 @@ function renderTasks() {
 function updateProgress() {
     const total = tasks.length;
     const completed = tasks.filter(t => t.completed).length;
-
     const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-    document.getElementById("progresstext").textContent = `Progress: ${percent}%`;
-}
-
-async function updateQuote() {
-    const quote = await contentManager.getQuote(mode);
-    document.getElementById("quoteBox").textContent = quote;
+    document.getElementById("progressText").textContent = `Progress: ${percent}%`;
 }
 
 function setMode(newMode) {
     mode = newMode;
-    updateQuote();
 }
 
 document.getElementById("addTaskBtn").addEventListener("click", addTask);
+
+document.getElementById("taskInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addTask();
+});
 document.getElementById("motivationBtn").addEventListener("click", () => {setMode("motivation");});
 document.getElementById("sarcasmBtn").addEventListener("click", () => {setMode("sarcasm");});
 document.getElementById("randomBtn").addEventListener("click", () => {setMode("random");});
