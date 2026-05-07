@@ -10,7 +10,7 @@ The Sarcastic Productivity Tracker is a web-based application that allows users 
 
 The project combines productivity tracking with personality by delivering either motivational or sarcastic/humorous quotes depending on the selected mode. This creates a more engaging and interactive experience compared to traditional productivity tools.
 
-The application integrates external APIs to fetch real-time data and dynamically updates the interface based on user interaction.
+The application integrates external APIs to fetch real-time data and dynamically updates the interface based on user interaction. It also includes a feature where you can clear your tasks if you have completed them.
 
 ---
 
@@ -42,7 +42,7 @@ The application integrates external APIs to fetch real-time data and dynamically
 ## DLC — Additional Topics
 
 ### JSON & Local Storage
-JSON is usec to parseand structure data from API responses, while local storsge stores the user's tasks in the browser so they csn persist across sessions and can be reloaded when the app is reopened.
+JSON is used to parse and structure data from API responses, while local storsge stores the user's tasks in the browser so they csn persist across sessions and can be reloaded when the app is reopened.
 
 ### Fetch & Public APIs
 The website uses the API Ninjas Quotes API to fetch structured motivational quotes and the Kanye.rest API to generate sarcastic or humorous quotes, allowing the application to dynamically display different types of content based on the selected mode.
@@ -52,6 +52,6 @@ The website uses the API Ninjas Quotes API to fetch structured motivational quot
 ## Tech Stack
 
 - HTML, CSS, Vanilla JavaScript
-- Kanye.rest API *(free, no API key required)*
+- Kanye.rest API *(free, but due to issues, added the quotes through a json file)*
 - Quotes Ninjas API *(free, but API key required)*
 - VS Code + GitHub
