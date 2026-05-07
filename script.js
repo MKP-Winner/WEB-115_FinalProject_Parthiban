@@ -22,15 +22,13 @@ class ContentManager {
     // Fetches a sarcastic Kanye quote from kanye.rest
     async getKanyeQuote() {
         try {
-            const res = await fetch("https://kanye.rest/", {
-                method: "GET",
-                headers: { "Content-Type": "application/json" }
-            });
-
-            if (!res.ok) throw new Error(`API error: ${res.status}`);
+            const res = await fetch("quotes.json");
+            if (!res.ok) throw new Error(`Failed to load quotes.json`);
 
             const data = await res.json();
-            return data.quote;
+            const quotes = data;
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
         } catch (err) {
             console.error("Kanye quote error:", err);
             return "Kanye has no advice for you right now.";
