@@ -87,6 +87,16 @@ function toggleTask(index) {
     renderTasks();
 }
 
+// Clears all tasks from the list and LocalStorage
+function clearTasks() {
+    if (tasks.length === 0) return;
+    const confirmed = confirm("Are you sure you want to clear all tasks?");
+    if (!confirmed) return;
+    tasks = [];
+    saveTasks();
+    renderTasks();
+}
+
 // --- DOM Rendering ---
 function renderTasks() {
     const list = document.getElementById("taskList");
@@ -145,7 +155,8 @@ document.getElementById("taskInput").addEventListener("keydown", (e) => {
 document.getElementById("motivationBtn").addEventListener("click", () => setMode("motivation"));
 document.getElementById("sarcasmBtn").addEventListener("click", () => setMode("sarcasm"));
 document.getElementById("randomBtn").addEventListener("click", () => setMode("random"));
+document.getElementById("clearTasksBtn").addEventListener("click", clearTasks);
 
-// --- Init ---
+
 loadTasks();
 renderTasks();
