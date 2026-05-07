@@ -1,6 +1,6 @@
 # Sarcastic Productivity Tracker
 **WEB-115 Final Project Proposal**
-Student: Mithunkarthick Parthiban | Repo: WEB-115_FinalProject_Parthiban
+Student: Mithunkarthick Parthiban | Repo: WEB-115_FinalProject_Parthiban | Live Site: https://mkp-winner.github.io/WEB-115_FinalProject_Parthiban/
 
 ---
 
